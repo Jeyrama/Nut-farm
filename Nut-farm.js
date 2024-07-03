@@ -45,3 +45,29 @@ Example:
 
 
 // Solution
+
+let shakeTree = function(tree)
+{  
+  let harvesting = Array(tree[0].length).fill(0);
+  tree.reduce(function(p,v,x){tree[x] = [...tree[x]]},0)
+  let x = 0, z = 0, nut = tree[0][x];
+  while(nut)
+  {
+    nut = tree[0][x];
+    if(nut == "o")
+    {
+      let pos = x, y = 1;
+     	while(tree[y]) 
+      {
+        let fall = tree[y][pos]
+        if(fall == "/"){pos--}
+        if(fall == "\\"){pos++}
+        if(fall == "_"){break}
+        y++;
+     	}
+      (fall != "_") ? harvesting[pos]++ : null;
+    }
+    x++;
+  }
+  return harvesting;
+}
