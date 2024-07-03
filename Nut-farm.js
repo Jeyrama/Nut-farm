@@ -73,3 +73,23 @@ let shakeTree = function(tree)
 }
 
 // or
+
+function shakeTree(tree) {
+  let width = tree[0].length;
+  let height = tree.length;
+  let ans = Array(width).fill(0);
+
+  for (let i = 0; i < width; i++) {
+    if (tree[0][i] == 'o') {
+      let pos = i;
+      for (let j = 1; j < height; j++) {
+        let spot = tree[j][pos];
+        if (spot == '_') break;
+        if (spot == '\\') pos++;
+        if (spot == '/') pos--;
+        if (j == height-1) ans[pos]++;
+      }
+    }
+  }
+  return ans;
+}
